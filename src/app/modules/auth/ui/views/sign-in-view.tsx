@@ -13,8 +13,9 @@ import { Alert, AlertTitle } from "@/components/ui/alert";
 import { TriangleAlert } from 'lucide-react';
 import Link from "next/link";
 import { Routers } from "@/types/routers";
-import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -44,10 +45,11 @@ const SignInView: FC = () => {
         {
           email: values.email,
           password: values.password,
+          callbackURL: Routers.Home
         },
         {
           onSuccess: () => {
-            router.push(Routers.Home);
+            router.push(Routers.Home)
           },
           onError: ({ error }) => {
             setError(error.message);
@@ -58,6 +60,28 @@ const SignInView: FC = () => {
       setPending(false);
     }
   }
+
+  function handlerSocial(provider: "github" | "google") {
+    setError(null);
+    setPending(true)
+
+    try {
+      authClient.signIn.social(
+        {
+          provider,
+          callbackURL: Routers.Home
+        },
+        {
+          onError: ({ error }) => {
+            setError(error.message);
+          }
+        }
+      )
+    } finally {
+      setPending(false);
+    }
+  }
+
 
   return (
     <div
@@ -172,18 +196,20 @@ const SignInView: FC = () => {
                   <Button
                     type="button"
                     variant="outline"
+                    onClick={handlerSocial.bind(null, "google")}
                     disabled={pending}
                     className="w-full"
                   >
-                    Google
+                    <FaGoogle />
                   </Button>
                   <Button
                     type="button"
                     variant="outline"
+                    onClick={handlerSocial.bind(null, "github")}
                     disabled={pending}
                     className="w-full"
                   >
-                    Github
+                    <FaGithub />
                   </Button>
                 </div>
                 <div

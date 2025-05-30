@@ -1,7 +1,6 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card";
-import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 
 import { z } from "zod"
@@ -15,6 +14,8 @@ import { Alert, AlertTitle } from "@/components/ui/alert";
 import { TriangleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const formSchema = z.object({
   name: z.string().min(3, {
@@ -32,7 +33,6 @@ const formSchema = z.object({
     path: ["confirmPassword"]
   }
 );
-
 
 const SignUpView: FC = () => {
   const router = useRouter();
@@ -56,11 +56,33 @@ const SignUpView: FC = () => {
           name: values.name,
           email: values.email,
           password: values.password,
+          callbackURL: Routers.Home
         },
         {
           onSuccess: () => {
-            router.push(Routers.Home);
+            router.push(Routers.Home)
           },
+          onError: ({ error }) => {
+            setError(error.message);
+          }
+        }
+      )
+    } finally {
+      setPending(false);
+    }
+  }
+
+  function handlerSocial(provider: "github" | "google") {
+    setError(null);
+    setPending(true)
+
+    try {
+      authClient.signIn.social(
+        {
+          provider,
+          callbackURL: Routers.Home
+        },
+        {
           onError: ({ error }) => {
             setError(error.message);
           }
@@ -226,18 +248,20 @@ const SignUpView: FC = () => {
                   <Button
                     type="button"
                     variant="outline"
+                    onClick={handlerSocial.bind(null, "google")}
                     disabled={pending}
                     className="w-full"
                   >
-                    Google
+                    <FaGoogle />
                   </Button>
                   <Button
                     type="button"
                     variant="outline"
+                    onClick={handlerSocial.bind(null, "github")}
                     disabled={pending}
                     className="w-full"
                   >
-                    Github
+                    <FaGithub />
                   </Button>
                 </div>
                 <div
