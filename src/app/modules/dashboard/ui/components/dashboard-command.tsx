@@ -1,4 +1,4 @@
-import { CommandDialog, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { CommandDialog, CommandInput, CommandItem, CommandList, CommandResponsiveDialog } from "@/components/ui/command";
 import { Dispatch, FC, SetStateAction } from "react";
 
 interface DashboardCommandProps {
@@ -10,7 +10,7 @@ const DashboardCommand: FC<DashboardCommandProps> = (props) => {
   const { open, setOpen } = props;
 
   return (
-    <CommandDialog
+    <CommandResponsiveDialog
       open={open}
       onOpenChange={setOpen}
     >
@@ -20,7 +20,7 @@ const DashboardCommand: FC<DashboardCommandProps> = (props) => {
           Test
         </CommandItem>
       </CommandList>
-    </CommandDialog>
+    </CommandResponsiveDialog>
   )
 }
 

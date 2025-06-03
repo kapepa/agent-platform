@@ -12,6 +12,7 @@ const AgentsView: FC = () => {
 
   return (
     <div>
+
       {
         JSON.stringify(data, null, 2)
       }
