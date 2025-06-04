@@ -8,8 +8,16 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Routers } from "@/types/routers";
+import type { SearchParams } from "nuqs";
+import { loadSearchParams } from "@/app/modules/agents/params";
 
-const AgentsPage: FC = async () => {
+interface AgentsPageProps {
+  searchParmas: Promise<SearchParams>
+}
+
+const AgentsPage: FC<AgentsPageProps> = async (props) => {
+  const { searchParmas } = props;
+  const filters = await loadSearchParams(searchParmas);
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -19,7 +27,9 @@ const AgentsPage: FC = async () => {
   }
 
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions());
+  void queryClient.prefetchQuery(trpc.agents.getMany.queryOptions({
+    ...filters
+  }));
 
   return (
     <>
