@@ -5,6 +5,7 @@ import { LoadingState } from "@/components/loading-state";
 import { useTRPC } from "@/trpc/client"
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { FC } from "react"
+import { MeetingsListHeader } from "../components.tsx/meetings-list-header";
 
 const MeetingsView: FC = () => {
   const trpc = useTRPC();
@@ -12,7 +13,9 @@ const MeetingsView: FC = () => {
 
   return (
     <div>
-      {JSON.stringify(data)}
+      {/* {
+        JSON.stringify(data)
+      } */}MeetingsView
     </div>
   )
 };
