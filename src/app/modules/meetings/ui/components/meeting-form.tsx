@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { MeetingGetOne } from "../../types";
 import { CommandSelect } from "@/components/command-select";
 import { GeneratedAvatar } from "@/components/generated-avatar";
+import { NewAgentDialog } from "@/app/modules/agents/ui/components/new-agent-dialog";
 
 interface MeetingFormProps {
   onCancel?: () => void,
@@ -98,6 +99,10 @@ const MeetingForm: FC<MeetingFormProps> = (props) => {
 
   return (
     <>
+      <NewAgentDialog
+        open={openNewAgentDialog}
+        onOpenChange={setOpenNewAgentDialog}
+      />
       <Form
         {...form}
       >

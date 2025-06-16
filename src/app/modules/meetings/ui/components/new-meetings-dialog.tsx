@@ -24,7 +24,7 @@ const NewMeetingDialog: FC<NewMeetingDialogProps> = (props) => {
         onSuccess={(id) => {
           router.push(`${Routers.Meetings}/${id}`)
         }}
-        onCancel={() => onOpenChange}
+        onCancel={() => onOpenChange(false)}
       />
     </ResponsiveDialog>
   )

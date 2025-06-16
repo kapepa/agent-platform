@@ -1,4 +1,4 @@
-import { MeetingsListHeader } from "@/app/modules/meetings/ui/components.tsx/meetings-list-header";
+import { MeetingsListHeader } from "@/app/modules/meetings/ui/components/meetings-list-header";
 import { MeetingsView, MeetingsViewError, MeetingsViewLoading } from "@/app/modules/meetings/ui/views/meetings-view";
 import { auth } from "@/lib/auth";
 import { getQueryClient, trpc } from "@/trpc/server";
