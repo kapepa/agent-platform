@@ -8,10 +8,18 @@ import { FC } from "react"
 import { DataTable } from "@/components/data-table";
 import { columns } from "../components/columns";
 import { EmptyState } from "@/components/empty-state";
+import { useRouter } from "next/navigation";
+import { useMeetingsFilters } from "../../hooks/use-meetings-filters";
+import { DataPagination } from "@/components/data-pagination";
+import { Routers } from "@/types/routers";
 
 const MeetingsView: FC = () => {
   const trpc = useTRPC();
-  const { data } = useSuspenseQuery(trpc.meetings.getMany.queryOptions({}));
+  const router = useRouter();
+  const [filters, setFilters] = useMeetingsFilters();
+  const { data } = useSuspenseQuery(trpc.meetings.getMany.queryOptions({
+    ...filters,
+  }));
 
   return (
     <div
@@ -20,6 +28,12 @@ const MeetingsView: FC = () => {
       <DataTable
         data={data.items}
         columns={columns}
+        onRowClick={(row) => router.push(`${Routers.Meetings}/${row.id}`)}
+      />
+      <DataPagination
+        page={filters.page}
+        totalPages={data.totalPage}
+        onPageChange={(page) => setFilters({ page })}
       />
       {
         data.items.length === 0 && (
@@ -51,5 +65,4 @@ const MeetingsViewError: FC = () => {
   )
 }
 
-
-export { MeetingsView, MeetingsViewLoading, MeetingsViewError }
+export { MeetingsView, MeetingsViewLoading, MeetingsViewError };
