@@ -45,7 +45,8 @@ const MeetingsIdPage: NextPage<MeetingsIdPageProps> = async (props) => {
           <ErrorBoundary
             fallback={<MeetingsViewError />}
           >
-            MeetingsIdPage
+            <MeetingsListHeader />
+            <MeetingsView />
           </ErrorBoundary>
         </Suspense>
       </HydrationBoundary>

@@ -6,6 +6,7 @@ import { useMeetingsFilters } from "../../hooks/use-meetings-filters";
 
 const MeetingsSearchFilter: FC = () => {
   const [filters, setFilters] = useMeetingsFilters();
+
   return (
     <div
       className="relative"
