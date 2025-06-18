@@ -5,7 +5,7 @@ import { PlusIcon, XCircleIcon } from "lucide-react";
 import { FC, useState } from "react";
 import { NewMeetingDialog } from "./new-meetings-dialog";
 import { MeetingsSearchFilter } from "./meetings-search-filter";
-import { StatusFilter } from "@/app/modules/agents/ui/components/status-filter";
+import { StatusFilter } from "@/components/status-filter";
 import { AgentIdFilters } from "./agent-id-filters";
 import { useMeetingsFilters } from "../../hooks/use-meetings-filters";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
