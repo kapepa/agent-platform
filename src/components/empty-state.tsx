@@ -3,18 +3,19 @@ import { FC } from "react";
 
 interface EmptyStateProps {
   title: string,
+  image?: string,
   description: string,
 }
 
 const EmptyState: FC<EmptyStateProps> = (props) => {
-  const { title, description } = props;
+  const { title, image = "/empty.svg", description } = props;
 
   return (
     <div
       className="flex flex-col items-center justify-center"
     >
       <Image
-        src="/logo.svg"
+        src={image}
         alt="Empty"
         width={240}
         height={240}

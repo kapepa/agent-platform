@@ -11,6 +11,10 @@ import { Routers } from "@/types/routers";
 import { toast } from "sonner";
 import { useConfirm } from "@/hooks/use-confirm";
 import { UpdateMeetingDialog } from "../components/update-meetings-dialog";
+import { UpcomingState } from "../components/upcoming-state";
+import { ActiveState } from "../components/active-state";
+import { CancelledState } from "../components/cancelled-state";
+import { ProcessingState } from "../components/processing-state";
 
 interface MeetingIdViewProps {
   meetingId: string,
@@ -29,7 +33,13 @@ const MeetingIdView: FC<MeetingIdViewProps> = (props) => {
   const [RemoveConfirmation, comfirmRemove] = useConfirm(
     "Are you sure?",
     "The following action will remove this meetings"
-  )
+  );
+
+  const isActive = data.status === "active";
+  const isUpcomming = data.status === "upcoming";
+  const isCancelled = data.status === "cancelled";
+  const isCompleted = data.status === "completed";
+  const isProcessing = data.status === "processing";
 
   const removeMeeting = useMutation(
     trpc.meetings.remove.mutationOptions({
@@ -64,6 +74,26 @@ const MeetingIdView: FC<MeetingIdViewProps> = (props) => {
           onEdit={() => setUpdateMeetingDialogOpen(true)}
           onRemove={handlerRemoveMeeting}
         />
+        {isCancelled && (
+          <CancelledState />
+        )}
+        {isProcessing && (
+          <ProcessingState />
+        )}
+        {isCompleted && <div>Completed</div>}
+        {isActive && (
+          <ActiveState
+            meetingId={meetingId}
+            isCancelling={false}
+          />
+        )}
+        {isUpcomming && (
+          <UpcomingState
+            meetingId={meetingId}
+            isCancelling={false}
+            onCancelMeeting={() => { }}
+          />
+        )}
       </div>
     </>
   )
