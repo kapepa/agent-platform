@@ -1,8 +1,8 @@
 import { auth } from "@/lib/auth";
-import { HomeView } from "../modules/home/ui/views/home-views";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Routers } from "@/types/routers";
+import { HomeView } from "@/modules/home/ui/views/home-views";
 
 export default async function Home() {
   const session = await auth.api.getSession({

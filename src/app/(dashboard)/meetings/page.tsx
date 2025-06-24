@@ -1,7 +1,7 @@
-import { loadSearchParams } from "@/app/modules/agents/params";
-import { MeetingsListHeader } from "@/app/modules/meetings/ui/components/meetings-list-header";
-import { MeetingsView, MeetingsViewError, MeetingsViewLoading } from "@/app/modules/meetings/ui/views/meetings-view";
 import { auth } from "@/lib/auth";
+import { loadSearchParams } from "@/modules/agents/params";
+import { MeetingsListHeader } from "@/modules/meetings/ui/components/meetings-list-header";
+import { MeetingsView, MeetingsViewError, MeetingsViewLoading } from "@/modules/meetings/ui/views/meetings-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { Routers } from "@/types/routers";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
