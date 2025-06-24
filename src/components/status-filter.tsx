@@ -1,8 +1,8 @@
 "use client"
 
-import { useMeetingsFilters } from "@/app/modules/meetings/hooks/use-meetings-filters";
-import { MeetingStatusEnum } from "@/app/modules/meetings/types";
 import { CommandSelect } from "@/components/command-select";
+import { useMeetingsFilters } from "@/modules/meetings/hooks/use-meetings-filters";
+import { MeetingStatusEnum } from "@/modules/meetings/types";
 import { CircleCheckIcon, CircleXIcon, ClockArrowUpIcon, LoaderIcon, VideoIcon } from "lucide-react";
 import { FC } from "react";
 

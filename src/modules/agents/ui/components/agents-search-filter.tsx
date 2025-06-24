@@ -1,8 +1,7 @@
 import { FC } from "react";
-
-import { useAgentsFilters } from "@/app/modules/agents/hooks/use-agents-filters";
 import { SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useAgentsFilters } from "../../hooks/use-agents-filters";
 
 const AgentsSearchFilter: FC = () => {
   const [filters, setFilters] = useAgentsFilters();

@@ -1,7 +1,6 @@
 "use client"
 
 import { FC, useState } from "react";
-
 import { useTRPC } from "@/trpc/client";
 import { useRouter } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -16,7 +15,7 @@ import { toast } from "sonner";
 import { MeetingGetOne } from "../../types";
 import { CommandSelect } from "@/components/command-select";
 import { GeneratedAvatar } from "@/components/generated-avatar";
-import { NewAgentDialog } from "@/app/modules/agents/ui/components/new-agent-dialog";
+import { NewAgentDialog } from "@/modules/agents/ui/components/new-agent-dialog";
 
 interface MeetingFormProps {
   onCancel?: () => void,

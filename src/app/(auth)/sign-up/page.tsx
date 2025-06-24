@@ -1,5 +1,6 @@
-import { SignUpView } from "@/app/modules/auth/ui/views/sign-up-view";
+
 import { auth } from "@/lib/auth";
+import { SignUpView } from "@/modules/auth/ui/views/sign-up-view";
 import { Routers } from "@/types/routers";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
